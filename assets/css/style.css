@@ -1,0 +1,27 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    z-index: 9999;
+}
+
+main {
+    border: blue 5px solid;
+}
+
+main h3 {
+    display: flex;
+    justify-content: center;
+
+}
+
+main p {
+    display: flex;
+    justify-content: center;
+
+}
