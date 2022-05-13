@@ -25,3 +25,7 @@ main p {
     justify-content: center;
 
 }
+
+button {
+    align-items: center;
+}
