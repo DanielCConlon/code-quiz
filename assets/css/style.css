@@ -12,6 +12,9 @@ header {
 
 main {
     border: blue 5px solid;
+    display: flex;
+    align-items: center;
+    width: 50%;
 }
 
 main h3 {
@@ -27,5 +30,21 @@ main p {
 }
 
 button {
+    text-align: center;
     align-items: center;
+    font-size: 20px;
+    background-color: purple;
+    color: white;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+span {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.hide-display {
+    display: none;
 }
