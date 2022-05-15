@@ -38,13 +38,23 @@ var timeRemaining = 100;
 var timePenalty = 15;
 
 // keep track of the question we are in
-var questionIndex = 0
+var questionIndex = 0;
 
 var questionContainer = document.querySelector(".questions-container");
 var startQuiz = document.querySelector("#startQuiz");
 
 //  create a new unordered list element
-var buttonChoice = document.createElement("ul")
+var buttonChoice = document.createElement("ul");
+
+
+
+var beginQuiz = function() {
+    startCountDown;
+    loadQuestions;
+    compareChoice;
+};
+
+
 
 
 
@@ -125,7 +135,7 @@ var compareChoice = function(event) {
 
     // final function, if we have gone through all the questions or time has run out go to stats
     if (questionIndex >= questionObject.length) {
-
+        finalStats;
     }
     else {
         loadQuestions;
@@ -136,32 +146,89 @@ var compareChoice = function(event) {
 
 };
 
+// will show the final stats from the quiz
+var finalStats = function() {
+    // wipe the container
+    questionContainer.innerHTML = "";
+
+    // create the heading
+    var createHead = document.createElement("h1");
+    createHead.setAttribute("id", "createHead");
+    createHead.textContent = "All Done!";
+
+    questionContainer.appendChild(createHead);
+
+    // create p tag to hold your score
+    var createScore = document.createElement("p");
+    createScore.setAttribute("id", "createScore");
+    createScore.textContent = "Your final score is " + timeRemaining + " .";
+
+    questionContainer.appendChild(createScore);
+
+    // create a label to prompt user to input initials
+    var userInputLabel = document.createElement("label");
+    userInputLabel.setAttribute("id", "userInputLabel");
+    userInputLabel.textContent = "Enter your initials: ";
+
+    questionContainer.appendChild(userInputLabel);
+
+    // get initials from user
+    var userInput = document.createElement("input");
+    userInput.setAttribute("type", "text");
+    userInput.setAttribute("id", "userInput");
+    userInput.textContent = "";
+
+    questionContainer.appendChild(userInput);
+
+    // creating the submit button
+    var createSubmit = document.createElement("button");
+    createSubmit.setAttribute("type", "button");
+    createSubmit.setAttribute("id", "createSubmit");
+    createSubmit.textContent = "Submit";
+
+    questionContainer.appendChild(createSubmit);
+
+    // capture initials and score and add to local storage
+    createSubmit.addEventListener("click", function() {
+        // grab the value the user input for initials
+        var userInitials = userInput.value;
+
+        // alert the user they did not fill out initials
+        if (userInitials === null){
+            alert("You did not fill out initials!");
+        }
+        else {
+            var userScore = {
+                initials: userInitials,
+                score: timeRemaining
+            }
+
+            var scoreRecords = localStorage.getItem("scoreRecords");
+            if (scoreRecords === null) {
+                scoreRecords = [];
+            }
+            else {
+                scoreRecords = JSON.parse(scoreRecords);
+            }
+
+            scoreRecords.push(userScore);
+
+            var newRecord = JSON.stringify(scoreRecords);
+            localStorage.setItem("scoreRecords", newRecord);
+
+            // send to the highscores HTML
+            window.location.replace("./highscore.html");
+
+        }
 
 
-var handleAnswerChoice = function(event) {
-    console.log(event);
-    // defining what is being targeted when the user clicks a button
-    var userChoice = event.target.textContent;
-    var correctAnswer = questionObject[questionIndex].correctChoice
-
-    if (correctAnswer === userChoice) {
-        var displayCorrect = document.querySelector(".question-answers");
-        displayCorrect.textContent = "Correct";
-    }
-    else {
-        var displayWrong = document.querySelector(".question-answers");
-        displayWrong.textContent = "Wrong";
-
-        timeRemaining -= 10;
-    }
-
-    questionIndex ++;
-    // reset to 0 when game finishes
-    
-    // call questions function to get next question
-    questions();
+    })
 
 };
+
+// event listener to behing the quiz
+startQuiz.addEventListener("click", beginQuiz);
+
 
 
 

@@ -15,11 +15,19 @@
 
 
     <main class="quiz-container">
-        <!-- content for the quiz -->
-        <h1>Coding Quiz Challenge</h1>
-        <P>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect
-            answers will penalize your score/time by ten seconds!
-        </P>
+        <div class="questions-container">
+            <!-- content for the quiz -->
+            <h1>Coding Quiz Challenge</h1>
+            <P>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect
+                answers will penalize your score/time by ten seconds!
+            </P>
+            <!-- make an empty unordered list to display answer choices -->
+            <ul id="anserChoices"></ul>
+
+            <!-- make the start button -->
+            <button id="startQuiz">Start Quiz</button>
+        </div>
+
     </main>
 
     <script src="./assets/js/script.js"></script>
