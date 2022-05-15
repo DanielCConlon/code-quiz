@@ -35,7 +35,7 @@ var questionObject = [
 var timeRemaining = 100;
 
 // penalty time
-var penaltyTime = 15;
+var timePenalty = 15;
 
 // keep track of the question we are in
 var questionIndex = 0
@@ -67,7 +67,7 @@ var startCountDown = function countdown () {
 };
 
 // add questions to the page
-var loadQuestions = function() {
+var loadQuestions = function(questionIndex) {
     // need to clear everything on the screen to show questions
     questionContainer.innerHTML = "";
     // need to clear button choices
@@ -95,14 +95,73 @@ var loadQuestions = function() {
     })
 };
 
-
+// compare the choice the user makes to the correct answer
 var compareChoice = function(event) {
+    var userChoice = event.target;
+
+    // if what the user clicks an list element
+    if (userChoice.matches("li")) {
+        // create a div to hold the correct or wrong notification
+        var createDiv = document.createElement("div");
+        createDiv.setAttribute("id", "createDiv");
+
+        // define the correct answer from the array as a variable
+        var correctAnswer = questionObject[questionIndex].correctChoice
+
+        // checking if the answer picked is correct
+        if (userChoice.textContent == correctAnswer) {
+            createDiv.textContent = "Correct";
+        }
+        else {
+            // remove time from time remaining and display wrong
+            timeRemaining = timeRemaining - timePenalty;
+            createDiv.textContent = "Wrong";
+        }
+
+    }
+
+    // need to increment questionIndex so it can load the next question
+    questionIndex ++;
+
+    // final function, if we have gone through all the questions or time has run out go to stats
+    if (questionIndex >= questionObject.length) {
+
+    }
+    else {
+        loadQuestions;
+    }
+    questionContainer.appendChild(createDiv);
+
+
 
 };
 
 
 
+var handleAnswerChoice = function(event) {
+    console.log(event);
+    // defining what is being targeted when the user clicks a button
+    var userChoice = event.target.textContent;
+    var correctAnswer = questionObject[questionIndex].correctChoice
 
+    if (correctAnswer === userChoice) {
+        var displayCorrect = document.querySelector(".question-answers");
+        displayCorrect.textContent = "Correct";
+    }
+    else {
+        var displayWrong = document.querySelector(".question-answers");
+        displayWrong.textContent = "Wrong";
+
+        timeRemaining -= 10;
+    }
+
+    questionIndex ++;
+    // reset to 0 when game finishes
+    
+    // call questions function to get next question
+    questions();
+
+};
 
 
 
