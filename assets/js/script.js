@@ -88,9 +88,7 @@ var loadQuestions = function(questionIndex) {
 
 
     // var questionContainer = document.querySelector(".questions-container");
-    
-    // loop through array to show question and responses
-    for (var i = 0; i < questionObject.length; i++) {
+
         // defining the question
         var targetQuestion = questionObject[questionIndex].questionPrompt;
 
@@ -101,7 +99,6 @@ var loadQuestions = function(questionIndex) {
         questionContainer.textContent = targetQuestion;
 
 
-    }
 
     // go through each question choice
     questionOption.forEach(function(newOption) {
@@ -136,6 +133,8 @@ var compareChoice = function(event) {
             createDiv.textContent = "Wrong";
         }
 
+
+
     }
 
     // need to increment questionIndex so it can load the next question
@@ -143,12 +142,12 @@ var compareChoice = function(event) {
 
     // final function, if we have gone through all the questions or time has run out go to stats
     if (questionIndex >= questionObject.length) {
-        finalStats;
+        finalStats();
     }
     else {
-        loadQuestions;
+        loadQuestions(questionIndex);
+        questionContainer.appendChild(createDiv);
     }
-    questionContainer.appendChild(createDiv);
 
 
 
