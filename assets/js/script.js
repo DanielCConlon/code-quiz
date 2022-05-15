@@ -53,7 +53,7 @@ var buttonChoice = document.createElement("ul");
 
 var beginQuiz = function() {
     startCountDown();
-    loadQuestions();
+    loadQuestions(questionIndex);
     compareChoice();
 };
 console.log(beginQuiz);
@@ -92,15 +92,13 @@ var loadQuestions = function(questionIndex) {
     // loop through array to show question and responses
     for (var i = 0; i < questionObject.length; i++) {
         // defining the question
-        var targetQuestion = document.createElement("p");
-        targetQuestion.textContent = questionObject[questionIndex].questionPrompt;
-        
+        var targetQuestion = questionObject[questionIndex].questionPrompt;
 
         // defining the choices
         var questionOption = questionObject[questionIndex].choices;
 
         // appending the question to the page
-        questionContainer.appendChild(targetQuestion);
+        questionContainer.textContent = targetQuestion;
 
 
     }
