@@ -5,8 +5,8 @@ var timeRemaining = 100;
 
 var questionIndex = 0
 
+// array and object containing questions and, answers, and correct answer
 var questionObject = [
-    // setting up all the questions with the corresponding answer choice
     {
         question1: "This is a question",
         choices: ["option 1", "option 2", "option 3", "option 4"],
