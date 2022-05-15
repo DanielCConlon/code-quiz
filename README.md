@@ -23,4 +23,4 @@ https://github.com/DanielCConlon/code-quiz
 
 ## Github Pages
 
-https://danielcconlon.github.io/challenge-password-generator/https://danielcconlon.github.io/code-quiz/
+https://danielcconlon.github.io/code-quiz/
